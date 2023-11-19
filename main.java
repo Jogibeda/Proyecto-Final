@@ -1,0 +1,6 @@
+/**
+ * main
+ */
+public class main {
+
+}
