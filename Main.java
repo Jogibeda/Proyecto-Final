@@ -75,6 +75,10 @@ class Encuestado {
             System.out.println("-----");
         }
     }
+
+    public ArrayList<String[]> getRespuestas() {
+        return respuestas;
+    }
 }
 
 public class Main {
