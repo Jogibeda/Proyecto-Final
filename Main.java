@@ -34,6 +34,7 @@ import java.util.Scanner;
 
 class Encuesta {
     private String nombre;
+    private int numPreguntas;
     private ArrayList<Pregunta> preguntas;
 
     public Encuesta(String nombre) {
@@ -43,6 +44,10 @@ class Encuesta {
 
     public void agregarPregunta(Pregunta pregunta) {
         preguntas.add(pregunta);
+    }
+
+    public void agregarNumPreguntas(int numPreguntas) {
+        numPreguntas = numPreguntas;
     }
 
     public void mostrarPreguntas() {
@@ -58,6 +63,10 @@ class Encuesta {
 
     public String getNombre() {
         return nombre;
+    }
+
+    public int getNumPreguntas() {
+        return numPreguntas;
     }
 
     public void setNombre(String nombre) {
@@ -161,6 +170,7 @@ public class Main {
                     Encuesta encuesta = new Encuesta(nombreEncuesta);
                     System.out.println("Agrega las preguntas a tu Encuesta");
                     boolean terminar = false;
+                    int numPreguntas = 0;
                     while (!terminar) {
                         System.out.println("¿Qué tipo de pregunta quiere agregar?");
                         System.out.println("1. Opción Multiple");
@@ -189,7 +199,9 @@ public class Main {
                         if (terminarEncuesta.equals("N") || terminarEncuesta.equals("n")) {
                             terminar = true;
                         }
+                        numPreguntas++;
                     }
+                    encuesta.agregarNumPreguntas(numPreguntas);
                     almacenEncuestas.agregarEncuesta(encuesta);
 
                     // String preguntaOpcionMultiple = scanner.nextLine();
