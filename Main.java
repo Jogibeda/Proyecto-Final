@@ -113,31 +113,8 @@ class AlmacenEncuestas {
 
 }
 
-class Encuestado {
-    private ArrayList<String[]> respuestas;
-
-    public Encuestado() {
-        this.respuestas = new ArrayList<>();
-    }
-
-    public void responderEncuesta(String pregunta, String respuesta) {
-        String[] respuestaEncuesta = { pregunta, respuesta };
-        respuestas.add(respuestaEncuesta);
-    }
-
-    public void mostrarRespuestas() {
-        System.out.println("Respuestas recopiladas:");
-        for (String[] respuesta : respuestas) {
-            System.out.println("Pregunta: " + respuesta[0]);
-            System.out.println("Respuesta: " + respuesta[1]);
-            System.out.println("-----");
-        }
-    }
-}
-
 public class Main {
     public static void main(String[] args) {
-        Encuestado encuestado = new Encuestado();
         AlmacenEncuestas almacenEncuestas = AlmacenEncuestas.obtenerInstancia();
 
         Scanner scanner = new Scanner(System.in);
