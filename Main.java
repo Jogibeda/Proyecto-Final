@@ -1,4 +1,4 @@
-import java.io.IOError;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -140,11 +140,11 @@ public class Main {
             System.out.println("3. Mostrar informe de encuesta");
             System.out.println("0. Salir");
 
-//            System.out.println("1. Crear nueva pregunta de opción múltiple");
-//            System.out.println("2. Crear nueva pregunta abierta");
-//            System.out.println("3. Responder pregunta");
-//            System.out.println("4. Mostrar respuestas recopiladas");
-//            System.out.println("0. Salir");
+            // System.out.println("1. Crear nueva pregunta de opción múltiple");
+            // System.out.println("2. Crear nueva pregunta abierta");
+            // System.out.println("3. Responder pregunta");
+            // System.out.println("4. Mostrar respuestas recopiladas");
+            // System.out.println("0. Salir");
 
             int opcion = scanner.nextInt();
 
@@ -173,7 +173,8 @@ public class Main {
                             System.out.println("Ingrese las opciones separadas por comas:");
                             String opcionesInput = scanner.nextLine();
                             ArrayList<String> opciones = new ArrayList<>(List.of(opcionesInput.split(",")));
-                            PreguntaFactory factory = new PreguntaOpcionMultipleFactory(preguntaIngresada, opciones);
+                            PreguntaFactory factory = new PreguntaOpcionMultipleFactory(preguntaIngresada,
+                                    opciones);
                             Pregunta pregunta = factory.crearPregunta();
                             System.out.println("Pregunta realizada exitosamente!");
                             encuesta.agregarPregunta(pregunta);
@@ -191,14 +192,15 @@ public class Main {
                     }
                     almacenEncuestas.agregarEncuesta(encuesta);
 
-
-//                    String preguntaOpcionMultiple = scanner.nextLine();
-//                    System.out.println("Ingrese las opciones separadas por comas:");
-//                    String opcionesInput = scanner.nextLine();
-//                    ArrayList<String> opciones = new ArrayList<>(List.of(opcionesInput.split(",")));
-//                    Encuesta nuevaEncuestaOpcionMultiple = new Encuesta(preguntaOpcionMultiple, opciones);
-//                    encuestador.agregarEncuesta(nuevaEncuestaOpcionMultiple);
-//                    System.out.println("Encuesta de opción múltiple creada exitosamente.\n");
+                    // String preguntaOpcionMultiple = scanner.nextLine();
+                    // System.out.println("Ingrese las opciones separadas por comas:");
+                    // String opcionesInput = scanner.nextLine();
+                    // ArrayList<String> opciones = new
+                    // ArrayList<>(List.of(opcionesInput.split(",")));
+                    // Encuesta nuevaEncuestaOpcionMultiple = new Encuesta(preguntaOpcionMultiple,
+                    // opciones);
+                    // encuestador.agregarEncuesta(nuevaEncuestaOpcionMultiple);
+                    // System.out.println("Encuesta de opción múltiple creada exitosamente.\n");
                     break;
                 case 2:
                     // Responder Encuesta
@@ -206,64 +208,72 @@ public class Main {
                     System.out.println("Elige la encuesta a responder");
                     System.out.println("Encuestas disponibles: ");
                     System.out.println(almacenEncuestas.obtenerNombreEncuestas());
+
                     String nombreEncuestaElegida = scanner.nextLine();
                     System.out.println(almacenEncuestas.obtenerEncuesta(nombreEncuestaElegida).getNombre());
 
-
-//                    System.out.println("Ingrese la pregunta de la encuesta abierta:");
-//                    String preguntaAbierta = scanner.nextLine();
-//                    Encuesta nuevaEncuestaAbierta = new PreguntaAbierta(preguntaAbierta);
-//                    encuestador.agregarEncuesta(nuevaEncuestaAbierta);
-//                    System.out.println("Encuesta abierta creada exitosamente.\n");
+                    // System.out.println("Ingrese la pregunta de la encuesta abierta:");
+                    // String preguntaAbierta = scanner.nextLine();
+                    // Encuesta nuevaEncuestaAbierta = new PreguntaAbierta(preguntaAbierta);
+                    // encuestador.agregarEncuesta(nuevaEncuestaAbierta);
+                    // System.out.println("Encuesta abierta creada exitosamente.\n");
                     break;
-//                case 3:
-//                    // Responder encuesta
-//                    encuestador.mostrarEncuestas();
-//                    System.out.println("Seleccione una encuesta para responder:");
-//                    int indiceEncuesta = scanner.nextInt();
-//                    Encuesta encuestaSeleccionada = encuestador.obtenerEncuesta(indiceEncuesta - 1);
-//
-//                    System.out.println(encuestaSeleccionada.getPregunta());
-//                    try {
-//                        if (encuestaSeleccionada.getOpciones() != null) {
-//                            // Encuesta de opción múltiple
-//                            for (int i = 0; i < encuestaSeleccionada.getOpciones().size(); i++) {
-//                                System.out.println((i + 1) + ". " + encuestaSeleccionada.getOpciones().get(i));
-//                            }
-//
-//                            System.out.println(
-//                                    "Ingrese su respuesta (1-" + encuestaSeleccionada.getOpciones().size() + "): ");
-//                            int respuestaOpcionMultiple = scanner.nextInt();
-//
-//                            if (respuestaOpcionMultiple > 0
-//                                    && respuestaOpcionMultiple <= encuestaSeleccionada.getOpciones().size()) {
-//                                encuestado.responderEncuesta(encuestaSeleccionada.getPregunta(),
-//                                        encuestaSeleccionada.getOpciones().get(respuestaOpcionMultiple - 1));
-//                                System.out.println("¡Respuesta registrada!\n");
-//                            } else {
-//                                System.out.println("Opción no válida. Inténtelo de nuevo.\n");
-//                            }
-//                        } else {
-//                            // Encuesta abierta
-//                            scanner.nextLine(); // Consumir la nueva línea después de nextInt()
-//                            System.out.println("Ingrese su respuesta abierta:");
-//                            String respuestaAbierta = scanner.nextLine();
-//                            encuestado.responderEncuesta(encuestaSeleccionada.getPregunta(), respuestaAbierta);
-//                            System.out.println("¡Respuesta registrada!\n");
-//                        }
-//                    } catch (IOError error) {
-//                        System.out.println("Hay un error en la informacion proporcionada= " + error);
-//                    }
-//                    break;
-//                case 4:
-//                    // Mostrar respuestas recopiladas
-//                    encuestado.mostrarRespuestas();
-//                    break;
+                // case 3:
+                // // Responder encuesta
+                // encuestador.mostrarEncuestas();
+                // System.out.println("Seleccione una encuesta para responder:");
+                // int indiceEncuesta = scanner.nextInt();
+                // Encuesta encuestaSeleccionada = encuestador.obtenerEncuesta(indiceEncuesta -
+                // 1);
+                //
+                // System.out.println(encuestaSeleccionada.getPregunta());
+                // try {
+                // if (encuestaSeleccionada.getOpciones() != null) {
+                // // Encuesta de opción múltiple
+                // for (int i = 0; i < encuestaSeleccionada.getOpciones().size(); i++) {
+                // System.out.println((i + 1) + ". " +
+                // encuestaSeleccionada.getOpciones().get(i));
+                // }
+                //
+                // System.out.println(
+                // "Ingrese su respuesta (1-" + encuestaSeleccionada.getOpciones().size() + "):
+                // ");
+                // int respuestaOpcionMultiple = scanner.nextInt();
+                //
+                // if (respuestaOpcionMultiple > 0
+                // && respuestaOpcionMultiple <= encuestaSeleccionada.getOpciones().size()) {
+                // encuestado.responderEncuesta(encuestaSeleccionada.getPregunta(),
+                // encuestaSeleccionada.getOpciones().get(respuestaOpcionMultiple - 1));
+                // System.out.println("¡Respuesta registrada!\n");
+                // } else {
+                // System.out.println("Opción no válida. Inténtelo de nuevo.\n");
+                // }
+                // } else {
+                // // Encuesta abierta
+                // scanner.nextLine(); // Consumir la nueva línea después de nextInt()
+                // System.out.println("Ingrese su respuesta abierta:");
+                // String respuestaAbierta = scanner.nextLine();
+                // encuestado.responderEncuesta(encuestaSeleccionada.getPregunta(),
+                // respuestaAbierta);
+                // System.out.println("¡Respuesta registrada!\n");
+                // }
+                // } catch (IOError error) {
+                // System.out.println("Hay un error en la informacion proporcionada= " + error);
+                // }
+                // break;
+                // case 4:
+                // // Mostrar respuestas recopiladas
+                // encuestado.mostrarRespuestas();
+                // break;
+                case 3:
+                    System.out.println("Encuestas disponibles: ");
+                    System.out.println(almacenEncuestas.obtenerNombreEncuestas());
+                    break;
                 default:
                     System.out.println("Opción no válida. Inténtelo de nuevo.\n");
 
-                scanner.close();
             }
+
         }
     }
 }
