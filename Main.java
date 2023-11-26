@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -46,13 +47,7 @@ class Encuesta {
         preguntas.add(pregunta);
     }
 
-<<<<<<< HEAD
     public void agregarNumPreguntas(int numPreguntas) { this.numPreguntas = numPreguntas; }
-=======
-    public void agregarNumPreguntas(int numPreguntas) {
-        numPreguntas = numPreguntas;
-    }
->>>>>>> c40ef97804d37250862ab7b615f0c222c53f1f09
 
     public void mostrarPreguntas() {
         System.out.println("Preguntas disponibles:");
@@ -225,34 +220,30 @@ public class Main {
                         System.out.println("Encuestas disponibles: ");
                         System.out.println(almacenEncuestas.obtenerNombreEncuestas());
 
-<<<<<<< HEAD
-                    String nombreEncuestaElegida = scanner.nextLine();
-                    Encuesta encuestaSeleccionada = almacenEncuestas.obtenerEncuesta(nombreEncuestaElegida);
-                    for (int i = 0; i < encuestaSeleccionada.getNumPreguntas(); i++) {
-                        System.out.println(encuestaSeleccionada.obtenerPregunta(i).getPregunta());
-                        System.out.println("Opciones disponibles:");
-                        for (int j = 0; j < encuestaSeleccionada.obtenerPregunta(i).getOpciones().size(); j++) {
-                            System.out.println((j + 1) + ". " + encuestaSeleccionada.obtenerPregunta(i).getOpciones().get(j));
-                        }
-                        System.out.println("Elige una Opción:");
-                        int respuestaIndex = scanner.nextInt();
-                        String respuesta = encuestaSeleccionada.obtenerPregunta(i).getOpciones().get(respuestaIndex-1);
-                        encuestaSeleccionada.obtenerPregunta(i).setRespuesta(respuesta);
-//                        encuestaSeleccionada.obtenerPregunta(i).setRespuesta(respuesta);
-=======
                         String nombreEncuestaElegida = scanner.nextLine();
-                        System.out.println(almacenEncuestas.obtenerEncuesta(nombreEncuestaElegida).getNombre());
+                        Encuesta encuestaSeleccionada = almacenEncuestas.obtenerEncuesta(nombreEncuestaElegida);
+                        for (int i = 0; i < encuestaSeleccionada.getNumPreguntas(); i++) {
+                            System.out.println(encuestaSeleccionada.obtenerPregunta(i).getPregunta());
+                            System.out.println("Opciones disponibles:");
+                            for (int j = 0; j < encuestaSeleccionada.obtenerPregunta(i).getOpciones().size(); j++) {
+                                System.out.println((j + 1) + ". " + encuestaSeleccionada.obtenerPregunta(i).getOpciones().get(j));
+                            }
+                            System.out.println("Elige una Opción:");
+                            int respuestaIndex = scanner.nextInt();
+                            String respuesta = encuestaSeleccionada.obtenerPregunta(i).getOpciones().get(respuestaIndex - 1);
+                            encuestaSeleccionada.obtenerPregunta(i).setRespuesta(respuesta);
+                            //                        encuestaSeleccionada.obtenerPregunta(i).setRespuesta(respuesta);
 
-                        // System.out.println("Ingrese la pregunta de la encuesta abierta:");
-                        // String preguntaAbierta = scanner.nextLine();
-                        // Encuesta nuevaEncuestaAbierta = new PreguntaAbierta(preguntaAbierta);
-                        // encuestador.agregarEncuesta(nuevaEncuestaAbierta);
-                        // System.out.println("Encuesta abierta creada exitosamente.\n");
+                            // System.out.println("Ingrese la pregunta de la encuesta abierta:");
+                            // String preguntaAbierta = scanner.nextLine();
+                            // Encuesta nuevaEncuestaAbierta = new PreguntaAbierta(preguntaAbierta);
+                            // encuestador.agregarEncuesta(nuevaEncuestaAbierta);
+                            // System.out.println("Encuesta abierta creada exitosamente.\n");
+                        }
                         break;
-
                     } catch (NullPointerException e) {
                         System.out.println("No pongas valores nulos " + e);
->>>>>>> c40ef97804d37250862ab7b615f0c222c53f1f09
+
                     }
                     // Responder Encuesta
 
@@ -304,8 +295,31 @@ public class Main {
                     // encuestado.mostrarRespuestas();
                     // break;
                 case 3:
+                    scanner.nextLine();
+                    System.out.println("Eliga una encuesta para recibir el Informe");
                     System.out.println("Encuestas disponibles: ");
                     System.out.println(almacenEncuestas.obtenerNombreEncuestas());
+
+                    String nombreEncuestaElegida = scanner.nextLine();
+                    Encuesta encuestaSeleccionada = almacenEncuestas.obtenerEncuesta(nombreEncuestaElegida);
+
+                    System.out.println();
+                    System.out.println("-----------------------------------------------------");
+                    System.out.println("INFORME DE LA ENCUESTA: "+encuestaSeleccionada.getNombre());
+                    for (int i = 0; i < encuestaSeleccionada.getNumPreguntas(); i++) {
+                        System.out.println("Pregunta "+(i+1)+". "+encuestaSeleccionada.obtenerPregunta(i).getPregunta());
+                        System.out.println("Opciones disponibles:");
+                        for (int j = 0; j < encuestaSeleccionada.obtenerPregunta(i).getOpciones().size(); j++) {
+                            System.out.println((j + 1) + ". " + encuestaSeleccionada.obtenerPregunta(i).getOpciones().get(j));
+                        }
+                        System.out.println("Tu Respuesta Fue: ");
+                        System.out.println(encuestaSeleccionada.obtenerPregunta(i).getRespuesta());
+                        System.out.println();
+                    }
+                    System.out.println("-----------------------------------------------------");
+                    System.out.println();
+
+
                     break;
                 default:
                     System.out.println("Opción no válida. Inténtelo de nuevo.\n");
