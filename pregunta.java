@@ -49,6 +49,10 @@ class PreguntaOpcionMultiple implements Pregunta {
         return opciones;
     }
 
+//    public int getIndiceOpcion(ArrayList<String> getOpciones) {
+//
+//    }
+
     @Override
     public String getRespuesta() {
         return respuesta;

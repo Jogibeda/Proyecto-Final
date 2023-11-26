@@ -34,6 +34,7 @@ import java.util.Scanner;
 
 class Encuesta {
     private String nombre;
+    private int numPreguntas;
     private ArrayList<Pregunta> preguntas;
 
     public Encuesta(String nombre) {
@@ -44,6 +45,8 @@ class Encuesta {
     public void agregarPregunta(Pregunta pregunta) {
         preguntas.add(pregunta);
     }
+
+    public void agregarNumPreguntas(int numPreguntas) { numPreguntas = numPreguntas; }
 
     public void mostrarPreguntas() {
         System.out.println("Preguntas disponibles:");
@@ -59,6 +62,8 @@ class Encuesta {
     public String getNombre() {
         return nombre;
     }
+
+    public int getNumPreguntas() { return numPreguntas; }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -161,6 +166,7 @@ public class Main {
                     Encuesta encuesta = new Encuesta(nombreEncuesta);
                     System.out.println("Agrega las preguntas a tu Encuesta");
                     boolean terminar = false;
+                    int numPreguntas = 0;
                     while (!terminar) {
                         System.out.println("¿Qué tipo de pregunta quiere agregar?");
                         System.out.println("1. Opción Multiple");
@@ -188,7 +194,9 @@ public class Main {
                         if (terminarEncuesta.equals("N")) {
                             terminar = true;
                         }
+                        numPreguntas++;
                     }
+                    encuesta.agregarNumPreguntas(numPreguntas);
                     almacenEncuestas.agregarEncuesta(encuesta);
 
 
@@ -207,7 +215,17 @@ public class Main {
                     System.out.println("Encuestas disponibles: ");
                     System.out.println(almacenEncuestas.obtenerNombreEncuestas());
                     String nombreEncuestaElegida = scanner.nextLine();
-                    System.out.println(almacenEncuestas.obtenerEncuesta(nombreEncuestaElegida).getNombre());
+                    Encuesta encuestaSeleccionada = almacenEncuestas.obtenerEncuesta(nombreEncuestaElegida);
+                    for (int i = 0; i < encuestaSeleccionada.getNumPreguntas(); i++) {
+                        System.out.println(encuestaSeleccionada.obtenerPregunta(i));
+                        System.out.println("Opciones disponibles:");
+                        for (int j = 0; j < encuestaSeleccionada.obtenerPregunta(i).getOpciones().size(); j++) {
+                            System.out.println((j + 1) + ". " + encuestaSeleccionada.obtenerPregunta(i).getOpciones());
+                        }
+                        System.out.println("Elige una Opción:");
+                        int respuesta = scanner.nextInt();
+
+                    }
 
 
 //                    System.out.println("Ingrese la pregunta de la encuesta abierta:");
