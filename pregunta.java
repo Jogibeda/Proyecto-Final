@@ -5,6 +5,7 @@ interface Pregunta {
     String getPregunta();
     String getRespuesta();
     ArrayList<String> getOpciones();
+    String setRespuesta(String respuesta);
 }
 
 // Implementamos Preguntas Concretas
@@ -28,6 +29,12 @@ class PreguntaAbierta implements Pregunta {
 
     @Override
     public ArrayList<String> getOpciones() {return null; } //No tiene opciones de Respuesta
+
+    @Override
+    public String setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
+        return respuesta;
+    }
 }
 
 class PreguntaOpcionMultiple implements Pregunta {
@@ -52,6 +59,12 @@ class PreguntaOpcionMultiple implements Pregunta {
 //    public int getIndiceOpcion(ArrayList<String> getOpciones) {
 //
 //    }
+
+    @Override
+    public String setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
+        return respuesta;
+    }
 
     @Override
     public String getRespuesta() {

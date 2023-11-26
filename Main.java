@@ -46,7 +46,7 @@ class Encuesta {
         preguntas.add(pregunta);
     }
 
-    public void agregarNumPreguntas(int numPreguntas) { numPreguntas = numPreguntas; }
+    public void agregarNumPreguntas(int numPreguntas) { this.numPreguntas = numPreguntas; }
 
     public void mostrarPreguntas() {
         System.out.println("Preguntas disponibles:");
@@ -73,7 +73,7 @@ class Encuesta {
 // Clase para gestionar el almacenamiento de encuestas (utilizando Singleton)
 class AlmacenEncuestas {
     private static AlmacenEncuestas instancia;
-    private List<Encuesta> encuestas;
+    private ArrayList<Encuesta> encuestas;
 
     private AlmacenEncuestas() {
         encuestas = new ArrayList<>();
@@ -87,15 +87,16 @@ class AlmacenEncuestas {
     }
 
     public void agregarEncuesta(Encuesta encuesta) {
-        encuestas.add(encuesta);
+        this.encuestas.add(encuesta);
     }
 
     public String obtenerNombreEncuestas() {
         String nombre = null;
-        for (int i = 0; i < encuestas.size(); i++) {
-            nombre = encuestas.get(i).getNombre();
+        for (Encuesta encuesta : encuestas) {
+            nombre = encuesta.getNombre();
+            return nombre;
         }
-        return nombre;
+        return null;
     }
 
     public Encuesta obtenerEncuesta(String nombre) {
@@ -179,8 +180,7 @@ public class Main {
                             System.out.println("Ingrese las opciones separadas por comas:");
                             String opcionesInput = scanner.nextLine();
                             ArrayList<String> opciones = new ArrayList<>(List.of(opcionesInput.split(",")));
-                            PreguntaFactory factory = new PreguntaOpcionMultipleFactory(preguntaIngresada,
-                                    opciones);
+                            PreguntaFactory factory = new PreguntaOpcionMultipleFactory(preguntaIngresada, opciones);
                             Pregunta pregunta = factory.crearPregunta();
                             System.out.println("Pregunta realizada exitosamente!");
                             encuesta.agregarPregunta(pregunta);
@@ -195,7 +195,7 @@ public class Main {
                         if (terminarEncuesta.equals("N")) {
                             terminar = true;
                         }
-                        numPreguntas++;
+                        numPreguntas = numPreguntas + 1;
                     }
                     encuesta.agregarNumPreguntas(numPreguntas);
                     almacenEncuestas.agregarEncuesta(encuesta);
@@ -220,14 +220,16 @@ public class Main {
                     String nombreEncuestaElegida = scanner.nextLine();
                     Encuesta encuestaSeleccionada = almacenEncuestas.obtenerEncuesta(nombreEncuestaElegida);
                     for (int i = 0; i < encuestaSeleccionada.getNumPreguntas(); i++) {
-                        System.out.println(encuestaSeleccionada.obtenerPregunta(i));
+                        System.out.println(encuestaSeleccionada.obtenerPregunta(i).getPregunta());
                         System.out.println("Opciones disponibles:");
                         for (int j = 0; j < encuestaSeleccionada.obtenerPregunta(i).getOpciones().size(); j++) {
-                            System.out.println((j + 1) + ". " + encuestaSeleccionada.obtenerPregunta(i).getOpciones());
+                            System.out.println((j + 1) + ". " + encuestaSeleccionada.obtenerPregunta(i).getOpciones().get(j));
                         }
                         System.out.println("Elige una Opción:");
-                        int respuesta = scanner.nextInt();
-
+                        int respuestaIndex = scanner.nextInt();
+                        String respuesta = encuestaSeleccionada.obtenerPregunta(i).getOpciones().get(respuestaIndex-1);
+                        encuestaSeleccionada.obtenerPregunta(i).setRespuesta(respuesta);
+//                        encuestaSeleccionada.obtenerPregunta(i).setRespuesta(respuesta);
                     }
 
                     // System.out.println("Ingrese la pregunta de la encuesta abierta:");
