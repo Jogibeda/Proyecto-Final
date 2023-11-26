@@ -46,7 +46,13 @@ class Encuesta {
         preguntas.add(pregunta);
     }
 
+<<<<<<< HEAD
     public void agregarNumPreguntas(int numPreguntas) { this.numPreguntas = numPreguntas; }
+=======
+    public void agregarNumPreguntas(int numPreguntas) {
+        numPreguntas = numPreguntas;
+    }
+>>>>>>> c40ef97804d37250862ab7b615f0c222c53f1f09
 
     public void mostrarPreguntas() {
         System.out.println("Preguntas disponibles:");
@@ -63,7 +69,9 @@ class Encuesta {
         return nombre;
     }
 
-    public int getNumPreguntas() { return numPreguntas; }
+    public int getNumPreguntas() {
+        return numPreguntas;
+    }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -192,7 +200,7 @@ public class Main {
                         }
                         System.out.println("Quieres agregar otra pregunta? S/N");
                         String terminarEncuesta = scanner.nextLine();
-                        if (terminarEncuesta.equals("N")) {
+                        if (terminarEncuesta.equals("N") || terminarEncuesta.equals("n")) {
                             terminar = true;
                         }
                         numPreguntas = numPreguntas + 1;
@@ -211,12 +219,13 @@ public class Main {
                     // System.out.println("Encuesta de opción múltiple creada exitosamente.\n");
                     break;
                 case 2:
-                    // Responder Encuesta
-                    scanner.nextLine(); // Consumir la nueva línea después de nextInt()
-                    System.out.println("Elige la encuesta a responder");
-                    System.out.println("Encuestas disponibles: ");
-                    System.out.println(almacenEncuestas.obtenerNombreEncuestas());
+                    try {
+                        scanner.nextLine(); // Consumir la nueva línea después de nextInt()
+                        System.out.println("Elige la encuesta a responder");
+                        System.out.println("Encuestas disponibles: ");
+                        System.out.println(almacenEncuestas.obtenerNombreEncuestas());
 
+<<<<<<< HEAD
                     String nombreEncuestaElegida = scanner.nextLine();
                     Encuesta encuestaSeleccionada = almacenEncuestas.obtenerEncuesta(nombreEncuestaElegida);
                     for (int i = 0; i < encuestaSeleccionada.getNumPreguntas(); i++) {
@@ -230,61 +239,70 @@ public class Main {
                         String respuesta = encuestaSeleccionada.obtenerPregunta(i).getOpciones().get(respuestaIndex-1);
                         encuestaSeleccionada.obtenerPregunta(i).setRespuesta(respuesta);
 //                        encuestaSeleccionada.obtenerPregunta(i).setRespuesta(respuesta);
-                    }
+=======
+                        String nombreEncuestaElegida = scanner.nextLine();
+                        System.out.println(almacenEncuestas.obtenerEncuesta(nombreEncuestaElegida).getNombre());
 
-                    // System.out.println("Ingrese la pregunta de la encuesta abierta:");
-                    // String preguntaAbierta = scanner.nextLine();
-                    // Encuesta nuevaEncuestaAbierta = new PreguntaAbierta(preguntaAbierta);
-                    // encuestador.agregarEncuesta(nuevaEncuestaAbierta);
-                    // System.out.println("Encuesta abierta creada exitosamente.\n");
-                    break;
-                // case 3:
-                // // Responder encuesta
-                // encuestador.mostrarEncuestas();
-                // System.out.println("Seleccione una encuesta para responder:");
-                // int indiceEncuesta = scanner.nextInt();
-                // Encuesta encuestaSeleccionada = encuestador.obtenerEncuesta(indiceEncuesta -
-                // 1);
-                //
-                // System.out.println(encuestaSeleccionada.getPregunta());
-                // try {
-                // if (encuestaSeleccionada.getOpciones() != null) {
-                // // Encuesta de opción múltiple
-                // for (int i = 0; i < encuestaSeleccionada.getOpciones().size(); i++) {
-                // System.out.println((i + 1) + ". " +
-                // encuestaSeleccionada.getOpciones().get(i));
-                // }
-                //
-                // System.out.println(
-                // "Ingrese su respuesta (1-" + encuestaSeleccionada.getOpciones().size() + "):
-                // ");
-                // int respuestaOpcionMultiple = scanner.nextInt();
-                //
-                // if (respuestaOpcionMultiple > 0
-                // && respuestaOpcionMultiple <= encuestaSeleccionada.getOpciones().size()) {
-                // encuestado.responderEncuesta(encuestaSeleccionada.getPregunta(),
-                // encuestaSeleccionada.getOpciones().get(respuestaOpcionMultiple - 1));
-                // System.out.println("¡Respuesta registrada!\n");
-                // } else {
-                // System.out.println("Opción no válida. Inténtelo de nuevo.\n");
-                // }
-                // } else {
-                // // Encuesta abierta
-                // scanner.nextLine(); // Consumir la nueva línea después de nextInt()
-                // System.out.println("Ingrese su respuesta abierta:");
-                // String respuestaAbierta = scanner.nextLine();
-                // encuestado.responderEncuesta(encuestaSeleccionada.getPregunta(),
-                // respuestaAbierta);
-                // System.out.println("¡Respuesta registrada!\n");
-                // }
-                // } catch (IOError error) {
-                // System.out.println("Hay un error en la informacion proporcionada= " + error);
-                // }
-                // break;
-                // case 4:
-                // // Mostrar respuestas recopiladas
-                // encuestado.mostrarRespuestas();
-                // break;
+                        // System.out.println("Ingrese la pregunta de la encuesta abierta:");
+                        // String preguntaAbierta = scanner.nextLine();
+                        // Encuesta nuevaEncuestaAbierta = new PreguntaAbierta(preguntaAbierta);
+                        // encuestador.agregarEncuesta(nuevaEncuestaAbierta);
+                        // System.out.println("Encuesta abierta creada exitosamente.\n");
+                        break;
+
+                    } catch (NullPointerException e) {
+                        System.out.println("No pongas valores nulos " + e);
+>>>>>>> c40ef97804d37250862ab7b615f0c222c53f1f09
+                    }
+                    // Responder Encuesta
+
+                    // case 3:
+                    // // Responder encuesta
+                    // encuestador.mostrarEncuestas();
+                    // System.out.println("Seleccione una encuesta para responder:");
+                    // int indiceEncuesta = scanner.nextInt();
+                    // Encuesta encuestaSeleccionada = encuestador.obtenerEncuesta(indiceEncuesta -
+                    // 1);
+                    //
+                    // System.out.println(encuestaSeleccionada.getPregunta());
+                    // try {
+                    // if (encuestaSeleccionada.getOpciones() != null) {
+                    // // Encuesta de opción múltiple
+                    // for (int i = 0; i < encuestaSeleccionada.getOpciones().size(); i++) {
+                    // System.out.println((i + 1) + ". " +
+                    // encuestaSeleccionada.getOpciones().get(i));
+                    // }
+                    //
+                    // System.out.println(
+                    // "Ingrese su respuesta (1-" + encuestaSeleccionada.getOpciones().size() + "):
+                    // ");
+                    // int respuestaOpcionMultiple = scanner.nextInt();
+                    //
+                    // if (respuestaOpcionMultiple > 0
+                    // && respuestaOpcionMultiple <= encuestaSeleccionada.getOpciones().size()) {
+                    // encuestado.responderEncuesta(encuestaSeleccionada.getPregunta(),
+                    // encuestaSeleccionada.getOpciones().get(respuestaOpcionMultiple - 1));
+                    // System.out.println("¡Respuesta registrada!\n");
+                    // } else {
+                    // System.out.println("Opción no válida. Inténtelo de nuevo.\n");
+                    // }
+                    // } else {
+                    // // Encuesta abierta
+                    // scanner.nextLine(); // Consumir la nueva línea después de nextInt()
+                    // System.out.println("Ingrese su respuesta abierta:");
+                    // String respuestaAbierta = scanner.nextLine();
+                    // encuestado.responderEncuesta(encuestaSeleccionada.getPregunta(),
+                    // respuestaAbierta);
+                    // System.out.println("¡Respuesta registrada!\n");
+                    // }
+                    // } catch (IOError error) {
+                    // System.out.println("Hay un error en la informacion proporcionada= " + error);
+                    // }
+                    // break;
+                    // case 4:
+                    // // Mostrar respuestas recopiladas
+                    // encuestado.mostrarRespuestas();
+                    // break;
                 case 3:
                     System.out.println("Encuestas disponibles: ");
                     System.out.println(almacenEncuestas.obtenerNombreEncuestas());
