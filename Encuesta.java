@@ -12,6 +12,7 @@ public class Encuesta {
 
     public void agregarPregunta(Pregunta pregunta) {
         preguntas.add(pregunta);
+        numPreguntas = preguntas.size();
     }
 
     public void agregarNumPreguntas(int numPreguntas) {
