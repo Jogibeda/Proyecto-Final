@@ -118,60 +118,61 @@ public class Main {
                             // encuestador.agregarEncuesta(nuevaEncuestaAbierta);
                             // System.out.println("Encuesta abierta creada exitosamente.\n");
                         }
-                        break;
                     } catch (NullPointerException e) {
                         System.out.println("No pongas valores nulos " + e);
 
                     }
-                    // Responder Encuesta
+                    break;
 
-                    // case 3:
-                    // // Responder encuesta
-                    // encuestador.mostrarEncuestas();
-                    // System.out.println("Seleccione una encuesta para responder:");
-                    // int indiceEncuesta = scanner.nextInt();
-                    // Encuesta encuestaSeleccionada = encuestador.obtenerEncuesta(indiceEncuesta -
-                    // 1);
-                    //
-                    // System.out.println(encuestaSeleccionada.getPregunta());
-                    // try {
-                    // if (encuestaSeleccionada.getOpciones() != null) {
-                    // // Encuesta de opción múltiple
-                    // for (int i = 0; i < encuestaSeleccionada.getOpciones().size(); i++) {
-                    // System.out.println((i + 1) + ". " +
-                    // encuestaSeleccionada.getOpciones().get(i));
-                    // }
-                    //
-                    // System.out.println(
-                    // "Ingrese su respuesta (1-" + encuestaSeleccionada.getOpciones().size() + "):
-                    // ");
-                    // int respuestaOpcionMultiple = scanner.nextInt();
-                    //
-                    // if (respuestaOpcionMultiple > 0
-                    // && respuestaOpcionMultiple <= encuestaSeleccionada.getOpciones().size()) {
-                    // encuestado.responderEncuesta(encuestaSeleccionada.getPregunta(),
-                    // encuestaSeleccionada.getOpciones().get(respuestaOpcionMultiple - 1));
-                    // System.out.println("¡Respuesta registrada!\n");
-                    // } else {
-                    // System.out.println("Opción no válida. Inténtelo de nuevo.\n");
-                    // }
-                    // } else {
-                    // // Encuesta abierta
-                    // scanner.nextLine(); // Consumir la nueva línea después de nextInt()
-                    // System.out.println("Ingrese su respuesta abierta:");
-                    // String respuestaAbierta = scanner.nextLine();
-                    // encuestado.responderEncuesta(encuestaSeleccionada.getPregunta(),
-                    // respuestaAbierta);
-                    // System.out.println("¡Respuesta registrada!\n");
-                    // }
-                    // } catch (IOError error) {
-                    // System.out.println("Hay un error en la informacion proporcionada= " + error);
-                    // }
-                    // break;
-                    // case 4:
-                    // // Mostrar respuestas recopiladas
-                    // encuestado.mostrarRespuestas();
-                    // break;
+                // Responder Encuesta
+
+                // case 3:
+                // // Responder encuesta
+                // encuestador.mostrarEncuestas();
+                // System.out.println("Seleccione una encuesta para responder:");
+                // int indiceEncuesta = scanner.nextInt();
+                // Encuesta encuestaSeleccionada = encuestador.obtenerEncuesta(indiceEncuesta -
+                // 1);
+                //
+                // System.out.println(encuestaSeleccionada.getPregunta());
+                // try {
+                // if (encuestaSeleccionada.getOpciones() != null) {
+                // // Encuesta de opción múltiple
+                // for (int i = 0; i < encuestaSeleccionada.getOpciones().size(); i++) {
+                // System.out.println((i + 1) + ". " +
+                // encuestaSeleccionada.getOpciones().get(i));
+                // }
+                //
+                // System.out.println(
+                // "Ingrese su respuesta (1-" + encuestaSeleccionada.getOpciones().size() + "):
+                // ");
+                // int respuestaOpcionMultiple = scanner.nextInt();
+                //
+                // if (respuestaOpcionMultiple > 0
+                // && respuestaOpcionMultiple <= encuestaSeleccionada.getOpciones().size()) {
+                // encuestado.responderEncuesta(encuestaSeleccionada.getPregunta(),
+                // encuestaSeleccionada.getOpciones().get(respuestaOpcionMultiple - 1));
+                // System.out.println("¡Respuesta registrada!\n");
+                // } else {
+                // System.out.println("Opción no válida. Inténtelo de nuevo.\n");
+                // }
+                // } else {
+                // // Encuesta abierta
+                // scanner.nextLine(); // Consumir la nueva línea después de nextInt()
+                // System.out.println("Ingrese su respuesta abierta:");
+                // String respuestaAbierta = scanner.nextLine();
+                // encuestado.responderEncuesta(encuestaSeleccionada.getPregunta(),
+                // respuestaAbierta);
+                // System.out.println("¡Respuesta registrada!\n");
+                // }
+                // } catch (IOError error) {
+                // System.out.println("Hay un error en la informacion proporcionada= " + error);
+                // }
+                // break;
+                // case 4:
+                // // Mostrar respuestas recopiladas
+                // encuestado.mostrarRespuestas();
+                // break;
                 case 3:
                     scanner.nextLine();
                     System.out.println("Eliga una encuesta para recibir el Informe");
@@ -183,27 +184,19 @@ public class Main {
 
                     System.out.println();
                     System.out.println("-----------------------------------------------------");
-                    System.out.println("INFORME DE LA ENCUESTA: "+encuestaSeleccionada.getNombre());
+                    System.out.println("INFORME DE LA ENCUESTA: " + encuestaSeleccionada.getNombre());
                     for (int i = 0; i < encuestaSeleccionada.getNumPreguntas(); i++) {
                         System.out.println("Pregunta "+(i+1)+". "+encuestaSeleccionada.obtenerPregunta(i).getPregunta());
-                        if (Objects.equals(encuestaSeleccionada.obtenerPregunta(i).getTipoPregunta(), "Opcion Multiple")) {
-                            System.out.println("Opciones disponibles:");
-                            for (int j = 0; j < encuestaSeleccionada.obtenerPregunta(i).getOpciones().size(); j++) {
-                                System.out.println((j + 1) + ". " + encuestaSeleccionada.obtenerPregunta(i).getOpciones().get(j));
-                            }
-                            System.out.println("Tu Respuesta Fue: ");
-                            System.out.println(encuestaSeleccionada.obtenerPregunta(i).getRespuesta());
-                            System.out.println();
-                        } else if (Objects.equals(encuestaSeleccionada.obtenerPregunta(i).getTipoPregunta(), "Abierta")) {
-                            System.out.println("Tu Respuesta Fue: ");
-                            System.out.println(encuestaSeleccionada.obtenerPregunta(i).getRespuesta());
-                            System.out.println();
+                        System.out.println("Opciones disponibles:");
+                        for (int j = 0; j < encuestaSeleccionada.obtenerPregunta(i).getOpciones().size(); j++) {
+                            System.out.println((j + 1) + ". " + encuestaSeleccionada.obtenerPregunta(i).getOpciones().get(j));
                         }
-
+                        System.out.println("Tu Respuesta Fue: ");
+                        System.out.println(encuestaSeleccionada.obtenerPregunta(i).getRespuesta());
+                        System.out.println();
                     }
                     System.out.println("-----------------------------------------------------");
                     System.out.println();
-
 
                     break;
                 default:
