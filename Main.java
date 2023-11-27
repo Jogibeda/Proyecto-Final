@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
@@ -44,13 +45,16 @@ public class Main {
                             ArrayList<String> opciones = new ArrayList<>(List.of(opcionesInput.split(",")));
                             PreguntaFactory factory = new PreguntaOpcionMultipleFactory(preguntaIngresada, opciones);
                             Pregunta pregunta = factory.crearPregunta();
+                            pregunta.setTipoPregunta("Opcion Multiple");
                             System.out.println("Pregunta realizada exitosamente!");
                             encuesta.agregarPregunta(pregunta);
-                        } else {
+                        } else if (tipoPregunta == 2) {
                             PreguntaFactory factory = new PreguntaAbiertaFactory(preguntaIngresada);
                             Pregunta pregunta = factory.crearPregunta();
+                            pregunta.setTipoPregunta("Abierta");
                             System.out.println("Pregunta realizada exitosamente!");
                             encuesta.agregarPregunta(pregunta);
+
                         }
                         System.out.println("Quieres agregar otra pregunta? S/N");
                         String terminarEncuesta = scanner.nextLine();
@@ -70,19 +74,33 @@ public class Main {
                         System.out.println(almacenEncuestas.obtenerNombreEncuestas());
 
                         String nombreEncuestaElegida = scanner.nextLine();
+                        System.out.println();
                         Encuesta encuestaSeleccionada = almacenEncuestas.obtenerEncuesta(nombreEncuestaElegida);
                         for (int i = 0; i < encuestaSeleccionada.getNumPreguntas(); i++) {
                             System.out.println(encuestaSeleccionada.obtenerPregunta(i).getPregunta());
-                            System.out.println("Opciones disponibles:");
-                            for (int j = 0; j < encuestaSeleccionada.obtenerPregunta(i).getOpciones().size(); j++) {
-                                System.out.println((j + 1) + ". " + encuestaSeleccionada.obtenerPregunta(i).getOpciones().get(j));
+                            System.out.println(encuestaSeleccionada.obtenerPregunta(i).getTipoPregunta());
+                            if (Objects.equals(encuestaSeleccionada.obtenerPregunta(i).getTipoPregunta(), "Opcion Multiple")) {
+                                System.out.println("Opciones disponibles:");
+                                for (int j = 0; j < encuestaSeleccionada.obtenerPregunta(i).getOpciones().size(); j++) {
+                                    System.out.println((j + 1) + ". " + encuestaSeleccionada.obtenerPregunta(i).getOpciones().get(j));
+                                }
+                                System.out.println("Elige una Opción:");
+                                int respuestaIndex = scanner.nextInt();
+                                String respuesta = encuestaSeleccionada.obtenerPregunta(i).getOpciones().get(respuestaIndex - 1);
+                                encuestaSeleccionada.obtenerPregunta(i).setRespuesta(respuesta);
+                            } else if (Objects.equals(encuestaSeleccionada.obtenerPregunta(i).getTipoPregunta(), "Abierta")) {
+                                String respuesta = scanner.nextLine();
+                                encuestaSeleccionada.obtenerPregunta(i).setRespuesta(respuesta);
                             }
-                            System.out.println("Elige una Opción:");
-                            int respuestaIndex = scanner.nextInt();
-                            String respuesta = encuestaSeleccionada.obtenerPregunta(i).getOpciones().get(respuestaIndex - 1);
-                            encuestaSeleccionada.obtenerPregunta(i).setRespuesta(respuesta);
+
+                            //                        encuestaSeleccionada.obtenerPregunta(i).setRespuesta(respuesta);
+
+                            // System.out.println("Ingrese la pregunta de la encuesta abierta:");
+                            // String preguntaAbierta = scanner.nextLine();
+                            // Encuesta nuevaEncuestaAbierta = new PreguntaAbierta(preguntaAbierta);
+                            // encuestador.agregarEncuesta(nuevaEncuestaAbierta);
+                            // System.out.println("Encuesta abierta creada exitosamente.\n");
                         }
-                        break;
                     } catch (NullPointerException e) {
                         System.out.println("No pongas valores nulos " + e);
 
@@ -99,7 +117,7 @@ public class Main {
 
                     System.out.println();
                     System.out.println("-----------------------------------------------------");
-                    System.out.println("INFORME DE LA ENCUESTA: "+encuestaSeleccionada.getNombre());
+                    System.out.println("INFORME DE LA ENCUESTA: " + encuestaSeleccionada.getNombre());
                     for (int i = 0; i < encuestaSeleccionada.getNumPreguntas(); i++) {
                         System.out.println("Pregunta "+(i+1)+". "+encuestaSeleccionada.obtenerPregunta(i).getPregunta());
                         System.out.println("Opciones disponibles:");
@@ -112,7 +130,6 @@ public class Main {
                     }
                     System.out.println("-----------------------------------------------------");
                     System.out.println();
-
 
                     break;
                 default:
