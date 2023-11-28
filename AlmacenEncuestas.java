@@ -20,13 +20,8 @@ public class AlmacenEncuestas implements EncuestaRepository {
         this.encuestas.add(encuesta);
     }
 
-    public String obtenerNombreEncuestas() {
-        String nombre = null;
-        for (Encuesta encuesta : encuestas) {
-            nombre = encuesta.getNombre();
-            return nombre;
-        }
-        return null;
+    public ArrayList<Encuesta> obtenerEncuestas() {
+        return this.encuestas;
     }
 
     public Encuesta obtenerEncuesta(String nombre) {

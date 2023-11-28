@@ -71,7 +71,10 @@ public class Main {
                         scanner.nextLine(); // Consumir la nueva línea después de nextInt()
                         System.out.println("Elige la encuesta a responder");
                         System.out.println("Encuestas disponibles: ");
-                        System.out.println(almacenEncuestas.obtenerNombreEncuestas());
+                        ArrayList<Encuesta> listaEncuestas = almacenEncuestas.obtenerEncuestas();
+                        for (Encuesta encuesta1 : listaEncuestas) {
+                            System.out.println("- "+encuesta1.getNombre());
+                        }
 
                         String nombreEncuestaElegida = scanner.nextLine();
                         System.out.println();
@@ -110,7 +113,10 @@ public class Main {
                     scanner.nextLine();
                     System.out.println("Eliga una encuesta para recibir el Informe");
                     System.out.println("Encuestas disponibles: ");
-                    System.out.println(almacenEncuestas.obtenerNombreEncuestas());
+                    ArrayList<Encuesta> listaEncuestas = almacenEncuestas.obtenerEncuestas();
+                    for (Encuesta encuesta1 : listaEncuestas) {
+                        System.out.println("- "+encuesta1.getNombre());
+                    }
 
                     String nombreEncuestaElegida = scanner.nextLine();
                     Encuesta encuestaSeleccionada = almacenEncuestas.obtenerEncuesta(nombreEncuestaElegida);
