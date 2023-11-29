@@ -1,6 +1,8 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 public class AlmacenEncuestasTest {
 
     @Test
@@ -20,7 +22,7 @@ public class AlmacenEncuestasTest {
 
         almacenEncuestas.agregarEncuesta(encuesta1);
 
-        String nombres = almacenEncuestas.obtenerNombreEncuestas();
+        ArrayList nombres = almacenEncuestas.obtenerEncuestas();
         assertTrue(nombres.contains("Encuesta de opinión"));
     }
 
